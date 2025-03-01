@@ -21,7 +21,7 @@ public class Category {
     @Column
     private String category;
 
-    @Column
+    @Column()
     private Double salaryXhour;
 
 

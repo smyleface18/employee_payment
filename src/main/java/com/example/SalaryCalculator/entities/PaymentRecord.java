@@ -1,5 +1,6 @@
 package com.example.SalaryCalculator.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,11 +15,8 @@ import lombok.Setter;
 public class PaymentRecord {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @OneToOne
-    @JoinColumn(name = "id_employee")
-    private Employee employee;
 
     @Column
     private Long hour;
@@ -26,5 +24,9 @@ public class PaymentRecord {
     @Column
     private Double money;
 
+    @ManyToOne
+    @JoinColumn(name = "id_employee")
+    @JsonIgnoreProperties("payments")
+    private Employee employee;
 
 }

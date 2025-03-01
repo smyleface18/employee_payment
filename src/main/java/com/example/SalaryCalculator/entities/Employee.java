@@ -1,21 +1,27 @@
 package com.example.SalaryCalculator.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class Employee {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
+    private String identityNumber;
 
     @Column
     private String name;
@@ -25,16 +31,22 @@ public class Employee {
 
 
     @OneToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "id_category")
     private Category category;
 
     @Column
     private String img;
 
+    @OneToMany
+    @JoinColumn(name = "id_employee")
+    @JsonIgnoreProperties("employee")
+    private List<PaymentRecord> payments;
 
-    public Employee(String name, String lastname, Category category) {
-        this.name = name;
+
+    public Employee( String identityNumber, String lastname, String name) {
+        this.identityNumber = identityNumber;
         this.lastname = lastname;
-        this.category = category;
+        this.name = name;
     }
+
 }
