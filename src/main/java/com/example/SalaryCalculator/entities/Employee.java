@@ -29,6 +29,9 @@ public class Employee {
     @Column
     private String lastname;
 
+    @Column
+    private String email;
+
 
     @OneToOne
     @JoinColumn(name = "id_category")

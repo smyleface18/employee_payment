@@ -30,4 +30,8 @@ public class ServiceEmployee {
     public ArrayList<Employee> listEmployee(){
         return (ArrayList<Employee>) iRepositoryEmployee.findAll();
     }
+
+    public Employee findById(Long id){
+        return iRepositoryEmployee.findById(id).orElse(null);
+    }
 }

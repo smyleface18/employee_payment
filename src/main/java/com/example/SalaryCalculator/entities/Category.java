@@ -19,7 +19,10 @@ public class Category {
     private Long id;
 
     @Column
-    private String category;
+    private String rol;
+
+    @Column
+    private String department;
 
     @Column()
     private Double salaryXhour;

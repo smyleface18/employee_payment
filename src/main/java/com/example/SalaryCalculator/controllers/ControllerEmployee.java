@@ -39,4 +39,10 @@ public class ControllerEmployee {
     public ArrayList<Employee> listEmployees(){
         return serviceEmployee.listEmployee();
     }
+
+    @GetMapping("/Employee/{id}")
+    public Employee getEmployee(@PathVariable Long id){
+        return serviceEmployee.findById(id);
+    }
+
 }
