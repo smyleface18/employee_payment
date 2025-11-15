@@ -1,5 +1,6 @@
 package com.example.SalaryCalculator.controllers;
 
+import com.example.SalaryCalculator.Dtos.PaymentDto;
 import com.example.SalaryCalculator.Services.ServicePayment;
 import com.example.SalaryCalculator.entities.PaymentRecord;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,10 @@ public class ControllerPaymentRecord {
     @PostMapping("/addPayment")
     public ResponseEntity<?> savePayment(@RequestBody PaymentRecord paymentRecord ){
         return servicePayment.savePayment(paymentRecord);
+    }
+
+    @GetMapping("/listPaymentRecords/{idEmployee}")
+    public List<PaymentDto> listPaymentRecord(@PathVariable String idEmployee){
+        return servicePayment.findByEmployee(idEmployee);
     }
 }

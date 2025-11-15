@@ -1,12 +1,14 @@
 package com.example.SalaryCalculator.repositories;
 
 
-import com.example.SalaryCalculator.entities.Employee;
+
 import com.example.SalaryCalculator.entities.PaymentRecord;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import java.util.List;
 
 
-public interface IRepositoryPayment extends JpaRepository<PaymentRecord,Long> {
-
+public interface IRepositoryPayment extends MongoRepository<PaymentRecord,String> {
+    List<PaymentRecord> findByEmployee_Id(String employeeId);
 
 }

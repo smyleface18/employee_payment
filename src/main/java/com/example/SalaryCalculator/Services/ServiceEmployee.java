@@ -13,14 +13,17 @@ import java.util.Collections;
 public class ServiceEmployee {
 
     private final IRepositoryEmployee iRepositoryEmployee;
+    private  final ServicePayment servicePayment;
     @Autowired
-    public ServiceEmployee(IRepositoryEmployee iRepositoryEmployee) {
+    public ServiceEmployee(IRepositoryEmployee iRepositoryEmployee, ServicePayment servicePayment) {
+
         this.iRepositoryEmployee = iRepositoryEmployee;
+        this.servicePayment = servicePayment;
     }
 
     public ResponseEntity<?> saveEmployee(Employee employee){
         try {
-            iRepositoryEmployee.saveAndFlush(employee);
+            iRepositoryEmployee.save(employee);
             return ResponseEntity.ok().body(Collections.singletonMap("message","Se registro el empleado correctamente"));
         }catch (Exception e){
             return ResponseEntity.badRequest().body(Collections.singletonMap("message","No se puedo registrar el empleado"));
@@ -31,7 +34,15 @@ public class ServiceEmployee {
         return (ArrayList<Employee>) iRepositoryEmployee.findAll();
     }
 
-    public Employee findById(Long id){
-        return iRepositoryEmployee.findById(id).orElse(null);
+    public Employee findById(String id){
+        Employee employee = iRepositoryEmployee.findById(id).orElse(null);
+
+        if (employee != null) {
+            employee.setPayments(this.servicePayment.findByEmployee(id));
+        }
+
+        return  employee;
+
+
     }
 }

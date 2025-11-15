@@ -13,14 +13,14 @@ import java.util.Optional;
 @Service
 public class ServiceCategory {
 
-    private IRepositoryCategory iRepositoryCategory;
+    private final IRepositoryCategory iRepositoryCategory;
 
     @Autowired
     public ServiceCategory(IRepositoryCategory iRepositoryCategory) {
         this.iRepositoryCategory = iRepositoryCategory;
     }
 
-    public Optional<Category> searchById(Long id){
+    public Optional<Category> searchById(String id){
       return  iRepositoryCategory.findById(id);
     }
 

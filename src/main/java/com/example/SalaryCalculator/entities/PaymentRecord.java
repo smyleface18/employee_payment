@@ -1,32 +1,28 @@
 package com.example.SalaryCalculator.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
+
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
-@Entity
+@Document(collection = "payment_records")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class PaymentRecord {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @MongoId
+    private String id; // String u ObjectId
 
-    @Column
     private Long hour;
-
-    @Column
     private Double money;
 
-    @ManyToOne
-    @JoinColumn(name = "id_employee")
-    @JsonIgnoreProperties("payments")
-    private Employee employee;
-
+    @DBRef
+    private Employee employee; // referencia al empleado
 }

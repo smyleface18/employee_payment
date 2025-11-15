@@ -2,10 +2,10 @@ package com.example.SalaryCalculator.repositories;
 
 
 import com.example.SalaryCalculator.entities.Category;
-import com.example.SalaryCalculator.entities.Employee;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
-public interface IRepositoryCategory extends JpaRepository<Category,Long> {
-
+@Repository
+public interface IRepositoryCategory extends MongoRepository<Category, String> {
 
 }

@@ -1,55 +1,33 @@
 package com.example.SalaryCalculator.entities;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
+
 import lombok.*;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Document(collection = "employees")
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class Employee {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @MongoId
+    private String id;
 
-    @Column
     private String identityNumber;
-
-    @Column
     private String name;
-
-    @Column
     private String lastname;
-
-    @Column
     private String email;
-
-
-    @OneToOne
-    @JoinColumn(name = "id_category")
-    private Category category;
-
-    @Column
     private String img;
 
-    @OneToMany
-    @JoinColumn(name = "id_employee")
-    @JsonIgnoreProperties("employee")
+    @DBRef
+    private Category category;
+    @DBRef(lazy = false)
     private List<PaymentRecord> payments;
-
-
-    public Employee( String identityNumber, String lastname, String name) {
-        this.identityNumber = identityNumber;
-        this.lastname = lastname;
-        this.name = name;
-    }
-
 }
