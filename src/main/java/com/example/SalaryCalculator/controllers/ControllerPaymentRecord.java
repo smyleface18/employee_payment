@@ -31,7 +31,7 @@ public class ControllerPaymentRecord {
     }
 
     @GetMapping("/listPaymentRecords/{idEmployee}")
-    public List<PaymentDto> listPaymentRecord(@PathVariable String idEmployee){
+    public List<PaymentRecord> listPaymentRecord(@PathVariable String idEmployee){
         return servicePayment.findByEmployee(idEmployee);
     }
 }

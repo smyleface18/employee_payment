@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class ServicePayment {
@@ -25,11 +25,11 @@ public class ServicePayment {
         return iRepositoryPayment.findAll();
     }
 
-    public List<PaymentDto> findByEmployee(String id) {
+    public List<PaymentRecord> findByEmployee(String id) {
         List<PaymentRecord> data =  iRepositoryPayment.findByEmployee_Id(id);
-        List<PaymentDto> response = List.of();
+        List<PaymentRecord> response = new ArrayList<>();
         for (PaymentRecord payment : data) {
-            PaymentDto paymentDto = new PaymentDto(payment.getId(),payment.getHour(), payment.getMoney());
+            PaymentRecord paymentDto = new PaymentRecord(payment.getId(),payment.getHour(), payment.getMoney());
             response.add(paymentDto);
         }
         return response;

@@ -25,4 +25,10 @@ public class PaymentRecord {
 
     @DBRef
     private Employee employee; // referencia al empleado
+
+    public PaymentRecord(String id, Long hour, Double money) {
+        this.id = id;
+        this.hour = hour;
+        this.money = money;
+    }
 }

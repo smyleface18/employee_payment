@@ -30,4 +30,6 @@ public class Employee {
     private Category category;
     @DBRef(lazy = false)
     private List<PaymentRecord> payments;
+
+
 }
