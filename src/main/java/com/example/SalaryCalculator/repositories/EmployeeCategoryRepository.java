@@ -1,0 +1,18 @@
+package com.example.SalaryCalculator.repositories;
+
+import com.example.SalaryCalculator.entities.EmployeeCategory;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public interface EmployeeCategoryRepository extends JpaRepository<EmployeeCategory, Long> {
+
+    Optional<EmployeeCategory> findByCategoryNameIgnoreCase(String categoryName);
+
+    boolean existsByCategoryNameIgnoreCase(String categoryName);
+
+    List<EmployeeCategory> findAllByOrderByCategoryNameAsc();
+}

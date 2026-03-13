@@ -1,18 +1,18 @@
 version: '3.9'
 
 services:
-  mongo:
-    image: mongo:7.0
-    container_name: mongodb-employees
+  postgres:
+    image: postgres:16
+    container_name: postgres-salarydb
     restart: always
     ports:
-      - "27017:27017"
+      - "5432:5432"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: admin123
-      MONGO_INITDB_DATABASE: salarydb
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: salarydb
     volumes:
-      - mongo_data:/data/db
+      - postgres_data:/var/lib/postgresql/data
 
 volumes:
-  mongo_data:
+  postgres_data:

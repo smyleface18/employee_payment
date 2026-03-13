@@ -1,14 +1,12 @@
 package com.example.SalaryCalculator.controllers;
 
-import com.example.SalaryCalculator.Dtos.PaymentDto;
-import com.example.SalaryCalculator.Services.ServicePayment;
-import com.example.SalaryCalculator.entities.PaymentRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/*
 @RestController
 @RequestMapping("/Payments")
 public class ControllerPaymentRecord {
@@ -35,3 +33,4 @@ public class ControllerPaymentRecord {
         return servicePayment.findByEmployee(idEmployee);
     }
 }
+ */
